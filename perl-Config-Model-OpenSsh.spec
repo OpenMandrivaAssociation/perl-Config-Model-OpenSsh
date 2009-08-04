@@ -1,18 +1,20 @@
-%define upstream_name       Config-Model-OpenSsh
-%define upstream_version    1.206
+%define upstream_name    Config-Model-OpenSsh
+%define upstream_version 1.207
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
 Release:    %mkrel 1
-License:    GPL or Artistic
-Group:      Development/Perl
+
 Summary:    OpenSsh configuration files editor and API
+License:    GPL+ or Artistic
+Group:      Development/Perl
 Url:        http://search.cpan.org/dist/%{upstream_name}
-Source:     http://www.cpan.org/modules/by-module/Config/%{upstream_name}-%{upstream_version}.tar.gz
+Source0:    http://www.cpan.org/modules/by-module/Config/%{upstream_name}-%{upstream_version}.tar.gz
+
 BuildRequires: perl(Module::Build)
 BuildRequires: perl(Config::Model)
 BuildArch: noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}
+BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
 
 %description
 This module provides a configuration model for OpenSsh. Then Config::Model
@@ -28,7 +30,7 @@ Once this module is installed, you can run (as root, but please backup
 /etc/X11/xorg.conf before):
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version} 
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Build.PL installdirs=vendor
@@ -53,4 +55,3 @@ rm -rf %buildroot
 %{_mandir}/man1/config-edit-sshd.1*
 %{_mandir}/man3/*
 %{perl_vendorlib}/Config
-
