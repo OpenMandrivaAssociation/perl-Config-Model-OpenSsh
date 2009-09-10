@@ -1,5 +1,5 @@
 %define upstream_name    Config-Model-OpenSsh
-%define upstream_version 1.207
+%define upstream_version 1.208
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
