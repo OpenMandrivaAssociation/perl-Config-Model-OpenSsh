@@ -1,20 +1,33 @@
 %define upstream_name    Config-Model-OpenSsh
-%define upstream_version 1.210
+%define upstream_version 1.224
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	2
 
-Summary:    OpenSsh configuration files editor and API
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Config/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	OpenSsh configuration files editor and API
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Config/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(Module::Build)
-BuildRequires: perl(Config::Model)
-BuildArch: noarch
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(Any::Moose)
+BuildRequires:	perl(Config::Model) >= 2.17.0
+BuildRequires:	perl(File::Copy::Recursive)
+BuildRequires:	perl(File::Slurp)
+BuildRequires:	perl(Log::Log4perl) >= 1.110.0
+BuildRequires:	perl(Module::Build) >= 0.360.100
+BuildRequires:	perl(Mouse::Meta::Attribute::Custom::Trait::Hash)
+BuildRequires:	perl(MouseX::StrictConstructor)
+BuildRequires:	perl(Test::Differences)
+BuildRequires:	perl(Test::Exception)
+BuildRequires:	perl(Test::File::Contents)
+BuildRequires:	perl(Test::Memory::Cycle)
+BuildRequires:	perl(Test::More)
+BuildRequires:	perl(Test::Warn)
+BuildRequires:	perl(namespace::autoclean)
+BuildArch:	noarch
 
 %description
 This module provides a configuration model for OpenSsh. Then Config::Model
@@ -33,25 +46,18 @@ Once this module is installed, you can run (as root, but please backup
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Build.PL installdirs=vendor
+perl Build.PL installdirs=vendor
 ./Build
 
 %check
+rm -f t/pod.t
 ./Build test
 
 %install
-rm -rf %buildroot
 ./Build install destdir=%{buildroot}
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
-%doc README ChangeLog
-%{_bindir}/config-edit-ssh
-%{_bindir}/config-edit-sshd
-%{_mandir}/man1/config-edit-ssh.1*
-%{_mandir}/man1/config-edit-sshd.1*
+%doc ChangeLog LICENSE META.yml MYMETA.yml README TODO demo
 %{_mandir}/man3/*
 %{perl_vendorlib}/Config
+
