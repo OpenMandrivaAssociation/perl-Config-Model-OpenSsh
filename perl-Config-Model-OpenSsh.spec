@@ -2,14 +2,14 @@
 %define upstream_version 1.228
 
 Name:		perl-%{upstream_name}
-Version:	%perl_convert_version 1.228
+Version:	%perl_convert_version %{upstream_version}
 Release:	1
 
 Summary:	OpenSsh configuration files editor and API
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		http://search.cpan.org/dist/%{upstream_name}
-Source0:	http://www.cpan.org/modules/by-module/Config/Config-Model-OpenSsh-1.228.tar.gz
+Source0:	http://www.cpan.org/modules/by-module/Config/Config-Model-OpenSsh-%{upstream_version}.tar.gz
 
 BuildRequires:	perl-devel
 BuildRequires:	perl(Any::Moose)
