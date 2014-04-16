@@ -1,5 +1,5 @@
 %define upstream_name    Config-Model-OpenSsh
-%define upstream_version 1.224
+%define upstream_version 1.235
 
 Name:		perl-%{upstream_name}
 Version:	%perl_convert_version %{upstream_version}
@@ -13,7 +13,7 @@ Source0:	http://www.cpan.org/modules/by-module/Config/%{upstream_name}-%{upstrea
 
 BuildRequires:	perl-devel
 BuildRequires:	perl(Any::Moose)
-BuildRequires:	perl(Config::Model) >= 2.17.0
+BuildRequires:	perl(Config::Model)
 BuildRequires:	perl(File::Copy::Recursive)
 BuildRequires:	perl(File::Slurp)
 BuildRequires:	perl(Log::Log4perl) >= 1.110.0
@@ -27,6 +27,7 @@ BuildRequires:	perl(Test::Memory::Cycle)
 BuildRequires:	perl(Test::More)
 BuildRequires:	perl(Test::Warn)
 BuildRequires:	perl(namespace::autoclean)
+BuildRequires:	perl(Config::Model::Tester)
 BuildArch:	noarch
 
 %description
@@ -57,7 +58,7 @@ rm -f t/pod.t
 ./Build install destdir=%{buildroot}
 
 %files
-%doc ChangeLog LICENSE META.yml MYMETA.yml README TODO demo
+%doc LICENSE META.yml MYMETA.yml demo
 %{_mandir}/man3/*
 %{perl_vendorlib}/Config
 
