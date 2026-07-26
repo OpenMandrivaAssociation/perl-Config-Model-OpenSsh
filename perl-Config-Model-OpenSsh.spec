@@ -1,15 +1,13 @@
 %define upstream_name    Config-Model-OpenSsh
-%define upstream_version 2.10.2.1
-
 Name:		perl-%{upstream_name}
-Version:	%{upstream_version}
-Release:	1
+Version:	2.10.2.1
+Release:	2
 
 Summary:	OpenSsh configuration files editor and API
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		https://github.com/dod38fr/config-model/wiki
-Source0:	https://cpan.metacpan.org/authors/id/D/DD/DDUMONT/Config-Model-OpenSsh-%{upstream_version}.tar.gz
+Source0:	https://cpan.metacpan.org/authors/id/D/DD/DDUMONT/Config-Model-OpenSsh-%{version}.tar.gz
 
 BuildRequires:	perl-devel
 BuildRequires:	perl(Any::Moose)
@@ -44,7 +42,7 @@ Once this module is installed, you can run (as root, but please backup
 /etc/X11/xorg.conf before):
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Build.PL installdirs=vendor
